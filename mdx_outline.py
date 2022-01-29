@@ -138,11 +138,11 @@ See also
 
 import re
 from markdown.util import etree
-from markdown import Extension
+from markdown.extensions import Extension
 from markdown.treeprocessors import Treeprocessor
 
 
-__version__ = "1.3.0"
+__version__ = "1.3.1"
 
 
 class OutlineProcessor(Treeprocessor):
@@ -151,7 +151,7 @@ class OutlineProcessor(Treeprocessor):
         pattern = re.compile('^h(\d)')
         wrapper_cls = self.wrapper_cls
 
-        for child in node.getchildren():
+        for child in list(node):
             match = pattern.match(child.tag.lower())
 
             if match:
@@ -220,6 +220,7 @@ class OutlineExtension(Extension):
         ext = OutlineProcessor(md)
         ext.config = self.config
         md.treeprocessors.add('outline', ext, '_end')
+        md.registerExtension(self)
 
 
 def makeExtension(configs={}):

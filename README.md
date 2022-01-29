@@ -11,7 +11,7 @@ attributes get moved to the wrapper.
 Installation
 ------------
 
-    pip install git+git://github.com/aleray/mdx_outline.git
+    pip install git+git://github.com/rdsnyder/mdx_outline.git
 
 
 Usage
